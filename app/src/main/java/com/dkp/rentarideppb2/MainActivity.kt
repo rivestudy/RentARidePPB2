@@ -34,6 +34,32 @@ class MainActivity : AppCompatActivity() {
 
         database = AppDatabase.getInstance(applicationContext)
         adapter = UserAdapter(list)
+        adapter.setDialog(object : UserAdapter.Dialog{
+
+
+            override fun onClick(position: Int) {
+                val dialog = AlertDialog.Builder(this@MainActivity)
+                dialog.setTitle(list[position].namamobil)
+                dialog.setItems(R.array.items_option, DialogInterface.OnClickListener
+                {dialog, which ->
+                    if (which==0){
+                        val intent = Intent(this@MainActivity, AddDataActivity::class.java)
+                        intent.putExtra("id", list[position].uid)
+                        startActivity(intent)
+                    } else if (which==1){
+                        database.userDao().delete(list[position])
+                        getData()
+                    } else{
+                        dialog.dismiss()
+                    }
+                }
+                )
+                val dialogView = dialog.create()
+                dialogView.show()
+                }
+
+            }
+        )
 
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(applicationContext, VERTICAL, false)

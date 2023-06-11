@@ -1,5 +1,6 @@
 package com.dkp.rentarideppb2.adapter
 
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,16 @@ import com.dkp.rentarideppb2.R
 import com.dkp.rentarideppb2.data.entity.User
 
 class UserAdapter(var list: List<User>): RecyclerView.Adapter<UserAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    private lateinit var dialog: Dialog
+
+    fun setDialog(dialog: Dialog){
+        this.dialog = dialog
+    }
+
+    interface Dialog {
+        fun onClick(position: Int)
+    }
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var namamobil: TextView
         var merkmobil: TextView
         var hargamobil: TextView
@@ -19,7 +29,9 @@ class UserAdapter(var list: List<User>): RecyclerView.Adapter<UserAdapter.ViewHo
             namamobil = view.findViewById(R.id.namamobil)
             merkmobil = view.findViewById(R.id.merkmobil)
             hargamobil = view.findViewById(R.id.hargamobil)
-
+            view.setOnClickListener{
+                dialog.onClick(layoutPosition)
+            }
         }
     }
 

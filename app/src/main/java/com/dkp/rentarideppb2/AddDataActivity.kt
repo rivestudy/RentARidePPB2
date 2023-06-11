@@ -28,16 +28,37 @@ class AddDataActivity : AppCompatActivity() {
 
         database = AppDatabase.getInstance(applicationContext)
 
+        val intent = intent.extras
+        if (intent!=null){
+            val id = intent.getInt("id", 0)
+            val user = database.userDao().get(id)
+
+            namamobil.setText(user.namamobil)
+            merkmobil.setText(user.merkmobil)
+            hargamobil.setText(user.hargamobil)
+        }
+
         tambahbutton.setOnClickListener {
             if (namamobil.text.isNotEmpty() && merkmobil.text.isNotEmpty() && hargamobil.text.isNotEmpty()) {
-                database.userDao().insertAll(
-                    User(
-                        null,
-                        namamobil.text.toString(),
-                        hargamobil.text.toString(),
-                        merkmobil.text.toString()
+                if(intent!= null){
+                    database.userDao().update(
+                        User(
+                            intent.getInt("id",0),
+                            namamobil.text.toString(),
+                            hargamobil.text.toString(),
+                            merkmobil.text.toString()
+                        )
                     )
-                )
+                } else {
+                    database.userDao().insertAll(
+                        User(
+                            null,
+                            namamobil.text.toString(),
+                            hargamobil.text.toString(),
+                            merkmobil.text.toString()
+                        )
+                    )
+                }
                 finish()
             } else {
                 Toast.makeText(applicationContext, "Isi yang lengkap", Toast.LENGTH_SHORT).show()
