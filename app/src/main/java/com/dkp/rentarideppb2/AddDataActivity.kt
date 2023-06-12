@@ -38,6 +38,26 @@ class AddDataActivity : AppCompatActivity() {
             hargamobil.setText(user.hargamobil)
         }
 
+        namamobil.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                namamobil.hint = ""
+            }
+        }
+
+        merkmobil.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                merkmobil.hint = ""
+            }
+        }
+
+        hargamobil.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                hargamobil.hint = "Rp. "
+            } else {
+                hargamobil.hint = ""
+            }
+        }
+
         tambahbutton.setOnClickListener {
             if (namamobil.text.isNotEmpty() && merkmobil.text.isNotEmpty() && hargamobil.text.isNotEmpty()) {
                 if(intent!= null){

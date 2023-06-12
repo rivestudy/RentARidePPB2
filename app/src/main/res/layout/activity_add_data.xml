@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nama Mobil" />
+        android:hint="Nama Mobil" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Merek Mobil" />
+            android:hint="Merek Mobil" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -43,13 +43,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Sewa Mobil" />
+            android:inputType="numberDecimal"
+            android:hint="Harga Sewa Mobil" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/tambahbutton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="Simpan" />
+
 </LinearLayout>
